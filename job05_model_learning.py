@@ -1,10 +1,11 @@
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"  # CPU를 쓰도록 강제
+
 import numpy as np
 import matplotlib.pyplot as plt
-from fontTools.misc.symfont import y
-from sklearn.utils import validation
+
 from tensorflow.keras.models import *
 from tensorflow.keras.layers import *
-from tensorflow_core.python.ops.gen_nn_ops import MaxPool
 
 X_train, X_test, Y_train, Y_test = np.load(
     './crawling_data/news_data_max_17_wordsize_12426.npy',
