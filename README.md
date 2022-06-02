@@ -1,7 +1,7 @@
 # news_category_classfication_2205
 
 이 저장소는 자연어 기반 쿤류 모델 실습을 위한 저장소입니다.
-
+python 3.7에서 진행했습니다.
 
 폴더구조
 
