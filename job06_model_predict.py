@@ -65,14 +65,17 @@ model = load_model('./models/news_category_classfication_model_0.687710464000701
 preds = model.predict(X_pad)
 predicts = []
 for pred in preds:
-    predicts.append(label[np.argmax(pred)])
+    most = label[np.argmax(pred)]
+    pred[np.argmax(pred)] = 0
+    second = label[np.argmax(pred)]
+    predicts.append([most, second])
 df['predict'] = predicts
 
 print(df.head(30))
 
 df['OX'] = 0
 for i in range(len(df)):
-    if df.loc[i, 'category'] == df.loc[i, 'predict']:
+    if df.loc[i, 'category'] in df.loc[i, 'predict']:
         df.loc[i, 'OX'] = 'O'
     else:
         df.loc[i, 'OX'] = 'X'
@@ -82,7 +85,7 @@ print(df['OX'].value_counts())
 print(df['OX'].value_counts()/len(df))
 
 for i in range(len(df)):
-    if df['category'][i] != df['predict'][i]:
+    if df['category'][i] not in df['predict'][i]:
         print(df.iloc[i])
 
 
